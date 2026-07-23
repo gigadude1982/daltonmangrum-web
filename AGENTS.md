@@ -2,7 +2,7 @@
 
 ## Project shape
 - This is a small Create React App site (`react-scripts` + React 18) with client-side routing via `react-router-dom` v6.
-- The entire app shell lives in `src/App.js`: `BrowserRouter`, top nav, page routes, rotating logo header, and footer are all composed there.
+- The app shell lives in `src/App.js`: it composes `BrowserRouter`, `<Navbar/>`, the page `<Routes>`, and `<Footer/>`. Navbar and Footer are their own components under `src/components/`.
 - Pages are simple presentational components under `src/pages/` (`index.js`, `about.js`, `contact.js`, `portfolio.js`, `nopage.js`). There is no API layer, global store, or server-side rendering.
 
 ## Routing and navigation
@@ -18,21 +18,24 @@
 
 ## Content and assets
 - Static images are imported from `src/images/`. Example: `src/pages/about.js` intentionally uses `mangrum_family_low_res.jpg` and comments that the hi-res image is much larger.
-- `src/App.js` reads the site version from `package.json` (`require("../package.json").version`) and shows `React.version` in the footer. Do not hardcode version text elsewhere.
+- `src/components/Footer.js` reads the site version from `package.json` (`require("../../package.json").version`) and shows `React.version`. Do not hardcode version text elsewhere.
 
-## Existing component reality
-- `src/components/Header.js` and `src/components/Footer.js` exist but are not used by `App.js`; the live header/footer markup is inline in `App.js`.
-- There are several TODO comments in `src/App.js`, but they are not backed by existing implementations. Treat the current structure as the source of truth.
+## Component reality
+- `src/components/Navbar.js` (+ `src/components/Navbar/NavbarElements.js`) and `src/components/Footer.js` are the real, live components rendered by `App.js`. There is no `Header.js`.
+- Treat the current structure as the source of truth.
 
 ## Verified workflows
 - Install/run with npm, not yarn:
   - `npm start`
   - `npm run build`
   - `npm test -- --watchAll=false`
-- As of 2026-04-08, `npm run build` succeeds with an ESLint warning for unused `useState` in `src/App.js`.
-- As of 2026-04-08, `npm test -- --watchAll=false` fails because `src/App.test.js` is still the default CRA test looking for “learn react”. If you touch UI text or test setup, update this test first.
+  - `npm run ci-cd` (build + test + lint — this is what CI runs before deploying)
+- As of 2026-07-22, `npm run ci-cd` passes clean (build + test + lint), aside from pre-existing CRA deprecation warnings.
+- `src/App.test.js` renders `<App/>` and asserts the home hero text (`/Hey, I'm Dalton/i`). If you change that hero copy in `src/pages/index.js`, update this test.
 
-## Deployment-related files
+## Deployment
+- **Live deploy path:** pushing to `main` runs `.github/workflows/deploy.yml` — `npm run ci-cd`, then `aws s3 sync ./build s3://$AWS_S3_BUCKET --delete`, then a CloudFront invalidation. Target is set by repo Actions secrets (`AWS_S3_BUCKET` = `www.daltonmangrum.com`, `AWS_CLOUDFRONT_DISTRIBUTION_ID`, `AWS_REGION`, plus the AWS key pair). Site: https://www.daltonmangrum.com.
+- The `Dockerfile`/`nginx.conf`/`docker-compose.yml` below are NOT part of the live deploy — they're leftover local-container scaffolding.
 - `Dockerfile` builds the CRA app and serves `build/` from Nginx. Note that it uses `yarn install` / `yarn run build` even though the checked-in lockfile is `package-lock.json`; keep that mismatch in mind before changing container workflows.
 - `nginx.conf` is configured for SPA routing with `try_files $uri $uri/ /index.html;`.
 - `docker-compose.yml` is currently a Traefik/whoami example, not an app-local development stack for this React site.
