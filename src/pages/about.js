@@ -4,11 +4,11 @@ import mangrum_family_low_res from "../images/mangrum_family_low_res.jpg";
 const About = () => {
   return (
     <div className="page-container">
-      <div className="page-header">
+      <div className="page-header reveal">
         <h1 className="page-title">About</h1>
         <p className="page-description">A little about me and my family</p>
       </div>
-      <div className="card">
+      <div className="card reveal reveal-delay-1">
         <div className="about-grid">
           <img
             src={mangrum_family_low_res}
