@@ -5,7 +5,9 @@ const Home = () => {
   return (
     <div className="hero">
       <span className="hero-eyebrow reveal">&#10022; Personal Website</span>
-      <h1 className="hero-title reveal reveal-delay-1">Hey, I'm Dalton</h1>
+      <h1 className="hero-title reveal reveal-delay-1">
+        <span className="hero-title-shimmer">Hey, I'm Dalton</span>
+      </h1>
       <p className="hero-subtitle reveal reveal-delay-2">
         Software engineer, dog dad, and occasional wizard from Akron, Ohio.
       </p>

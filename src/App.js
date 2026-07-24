@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Fireflies from "./components/Fireflies";
 
 import Home from "./pages";
 import About from "./pages/about";
@@ -14,6 +15,7 @@ import NoPage from "./pages/nopage";
 function App() {
   return (
     <Router>
+      <Fireflies />
       <Navbar />
       <main>
         <Routes>

@@ -1,6 +1,12 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
+const handlePointerMove = (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--pointer-x", `${e.clientX - rect.left}px`);
+  e.currentTarget.style.setProperty("--pointer-y", `${e.clientY - rect.top}px`);
+};
+
 const Portfolio = () => {
   return (
     <div className="page-container">
@@ -13,6 +19,7 @@ const Portfolio = () => {
         className="card portfolio-feature reveal reveal-delay-1"
         target="_blank"
         rel="noreferrer"
+        onMouseMove={handlePointerMove}
       >
         <span className="coming-soon-badge">&#9889; gigadude</span>
         <h2 className="portfolio-feature-title">Visit gigadude.com</h2>
