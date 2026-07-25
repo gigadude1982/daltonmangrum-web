@@ -565,8 +565,39 @@
   z-index: 100;
 }
 
-.footer-meta {
+.footer-bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(140, 160, 120, 0.12);
+  padding-top: 0.7rem;
+}
+
+.footer-bottom p {
   margin: 0;
+}
+
+.footer-copyright {
+  text-align: left;
+}
+
+.footer-site-version {
+  text-align: right;
+  color: rgba(184, 147, 90, 0.6);
+}
+
+@media (max-width: 480px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .footer-copyright,
+  .footer-site-version {
+    text-align: center;
+  }
 }
 
 .App-footer a {

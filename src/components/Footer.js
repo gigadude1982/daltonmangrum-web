@@ -1,9 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FaTiktok, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const appVersion = require("../../package.json").version;
-const reactVersion = React.version;
 
 const socials = [
   {
@@ -42,10 +40,14 @@ const Footer = () => {
           </a>
         ))}
       </div>
-      <p className="footer-meta">
-        v{appVersion} &mdash; React {reactVersion} &mdash; &copy; {currentYear}{" "}
-        <Link to="/">Dalton Mangrum</Link>
-      </p>
+      <div className="footer-bottom">
+        <p className="footer-copyright">
+          &copy; {currentYear} <Link to="/">Dalton Mangrum</Link>
+        </p>
+        <p className="footer-site-version">
+          www.daltonmangrum.com &mdash; v{appVersion}
+        </p>
+      </div>
     </footer>
   );
 };
