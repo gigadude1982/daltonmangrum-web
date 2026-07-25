@@ -42,10 +42,10 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p className="footer-copyright">
-          &copy; {currentYear} <Link to="/">Dalton Mangrum</Link>
+          &copy; {currentYear} Dalton Mangrum
         </p>
         <p className="footer-site-version">
-          www.daltonmangrum.com &mdash; v{appVersion}
+          <Link to="/">www.daltonmangrum.com</Link> &mdash; v{appVersion}
         </p>
       </div>
     </footer>
