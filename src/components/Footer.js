@@ -44,7 +44,7 @@ const Footer = () => {
       </div>
       <p className="footer-meta">
         v{appVersion} &mdash; React {reactVersion} &mdash; &copy; {currentYear}{" "}
-        <Link to="/">www.daltonmangrum.com</Link>
+        <Link to="/">Dalton Mangrum</Link>
       </p>
     </footer>
   );
