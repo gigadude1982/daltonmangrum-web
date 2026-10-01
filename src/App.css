@@ -278,6 +278,10 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
+.page-container > .card + .card {
+  margin-top: 1.5rem;
+}
+
 .card:hover {
   border-color: var(--border-hover);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
